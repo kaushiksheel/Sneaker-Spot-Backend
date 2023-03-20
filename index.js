@@ -6,6 +6,7 @@ const connectToDb = require("./database/connect");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
 const cart = require("./routes/cart");
+const wishlist = require("./routes/wishlist");
 
 dotenv.config({ path: "./.env" });
 
@@ -17,6 +18,7 @@ connectToDb();
 app.use("/api", signup);
 app.use("/api", login);
 app.use("/api", cart);
+app.use("/api", wishlist);
 
 const port = process.env.PORT || 5000;
 
