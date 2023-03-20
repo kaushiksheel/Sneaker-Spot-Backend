@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const connectToDb = require("./database/connect");
+const signup = require("./routes/signup");
 
 dotenv.config({ path: "./.env" });
 
@@ -10,6 +11,8 @@ app.use(cors());
 app.use(express.json());
 
 connectToDb();
+
+app.use("/api", signup);
 
 const port = process.env.PORT || 5000;
 
