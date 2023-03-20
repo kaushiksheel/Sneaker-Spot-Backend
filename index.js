@@ -5,6 +5,7 @@ const cors = require("cors");
 const connectToDb = require("./database/connect");
 const signup = require("./routes/signup");
 const login = require("./routes/login");
+const cart = require("./routes/cart");
 
 dotenv.config({ path: "./.env" });
 
@@ -15,6 +16,7 @@ connectToDb();
 
 app.use("/api", signup);
 app.use("/api", login);
+app.use("/api", cart);
 
 const port = process.env.PORT || 5000;
 
