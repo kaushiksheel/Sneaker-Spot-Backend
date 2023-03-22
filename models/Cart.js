@@ -8,6 +8,7 @@ const cartSchema = new mongoose.Schema({
   img: String,
   price: Number,
   quantity: Number,
+  slug: String,
   cartOwner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

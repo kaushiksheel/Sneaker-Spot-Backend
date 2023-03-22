@@ -5,12 +5,13 @@ const auth = require("../middlewares/auth");
 const Cart = require("../models/Cart");
 
 router.post("/add-to-cart", auth, async (req, res) => {
-  const { name, img, price, quantity } = req.body;
+  const { name, img, price, quantity, slug } = req.body;
   const newItem = new Cart({
     name,
     img,
     price,
     quantity,
+    slug,
     cartOwner: req.user._id,
   });
   try {
@@ -21,6 +22,25 @@ router.post("/add-to-cart", auth, async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json(error);
+  }
+});
+
+router.get("/get-cart-item", auth, async (req, res) => {
+  try {
+    const cartItems = await Cart.find({ cartOwner: req.user._id });
+    return res.status(200).json(cartItems);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+router.post("/remove-cart-item", auth, async (req, res) => {
+  try {
+    const cartItem = await Cart.findOne({ itemName: req.body.name });
+    const filteredItem = await Cart.findByIdAndDelete({ _id: cartItem._id });
+    return res.status(200).json(filteredItem);
+  } catch (error) {
+    throw new Error(error);
   }
 });
 

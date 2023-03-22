@@ -4,6 +4,7 @@ const wishlistSchema = new mongoose.Schema({
   name: String,
   img: String,
   price: Number,
+  slug:String,
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

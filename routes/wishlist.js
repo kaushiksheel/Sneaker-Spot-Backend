@@ -5,11 +5,12 @@ const auth = require("../middlewares/auth");
 const router = express.Router();
 
 router.post("/add-to-wishlist", auth, async (req, res) => {
-  const { name, img, price } = req.body;
+  const { name, img, price, slug } = req.body;
   const newItem = new WishList({
     name,
     img,
     price,
+    slug,
     owner: req.user._id,
   });
   try {
