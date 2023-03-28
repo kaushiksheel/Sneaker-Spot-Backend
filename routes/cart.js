@@ -88,12 +88,4 @@ router.post("/checkout", auth, async (req, res) => {
   }
 });
 
-async function fs() {
-  const paymentLink = await stripe.paymentLinks.retrieve(
-    "plink_1MoQz72eZvKYlo2CgPbrQb4I"
-  );
-  console.log(paymentLink);
-}
-fs();
-
 module.exports = router;
