@@ -49,7 +49,6 @@ router.post("/checkout", auth, async (req, res) => {
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
-      // customer_email: req.body.email,
       submit_type: "pay",
       billing_address_collection: "auto",
       shipping_address_collection: {
@@ -76,7 +75,7 @@ router.post("/checkout", auth, async (req, res) => {
         };
       }),
 
-      success_url: "http://127.0.0.1:5173/home",
+      success_url: "http://127.0.0.1:5173/shoes",
       cancel_url: "http://127.0.0.1:5173/cart",
     });
 
@@ -88,5 +87,13 @@ router.post("/checkout", auth, async (req, res) => {
     res.status(500).json({ error: e.message });
   }
 });
+
+async function fs() {
+  const paymentLink = await stripe.paymentLinks.retrieve(
+    "plink_1MoQz72eZvKYlo2CgPbrQb4I"
+  );
+  console.log(paymentLink);
+}
+fs();
 
 module.exports = router;
