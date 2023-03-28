@@ -54,7 +54,7 @@ router.post("/checkout", auth, async (req, res) => {
       shipping_address_collection: {
         allowed_countries: ["US", "CA"],
       },
-      shipping_options: [{ shipping_rate: "shr_1M9N6vSEi48qcQQWQVHnuumn" }],
+      shipping_options: [{ shipping_rate: "shr_1MoQmSSDgGhBjzw29DzGhpqd" }],
       line_items: req.body.items.map((item) => {
         const img = item.img;
         return {
